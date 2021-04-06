@@ -19,35 +19,22 @@ Linker <br>
 The lld subproject is an attempt to develop a built-in, platform-independent linker for LLVM. <br>
 
 ## C++11/C++14 features used
-In LLVM\lib\AsmParser\Parser.cpp
-
-Use of unique_ptr
-In C++11, auto_ptr has been deprecated and the following smart pointers added.
-
-std::unique_ptr: The destructors of this class release memory for the underlying object when the pointer goes out of scope. Through move semantics, it is ensured that only one pointer can bind to the object at a time.
-
-Even nullptr is new feature add in version c++11
-nullptr keyword in place of NULL
-
-Use of range based for loops and auto keyword in AliasAnalysis.cpp
-
-template used in LLparser.h 
-
-inline keyword used in AliasAnalysisEvaluator.cpp (C++17)
-If a function is inline, the compiler places a copy of the code of that function at each point where the function is called at compile time.
-
-Any change to an inline function could require all clients of the function to be recompiled because compiler would need to replace all the code once again otherwise it will continue with old functionality.
-
-NSDMI - Non-static data member initialisation in LLParser.h inside struct ArgInfo
-
-use of default
-This makes the compiler generate the default implementations for explicitly defaulted functions, which are more efficient than manually programmed function implementations.
-
-in StratifiedSets.h
-
-constexp in SmallVector.h
-
-Class hierarchy
+* Use of unique_ptr <br>
+  std::unique_ptr: The destructors of this class release memory for the underlying object when the pointer goes out of scope. Through move semantics, it is ensured that only one   pointer can bind to the object at a time. <br>
+* In C++11, auto_ptr has been deprecated and the following smart pointers added.
+* Even nullptr is new feature add in version c++11
+  nullptr keyword in place of NULL <br>
+* Use of range based for loops and auto keyword <br>
+* use of templates <br>
+* use of auto keyword instead of any particular data type. <br>
+* use of static_assert to test assertions at compile-time <br> 
+* use of =default and =delete <br>
+* use of constexpr <br>
+* use of Variadic template <br>
+* use of override ensures virtual function declared in a derived class has the same function signature as that of the base class.<br>
+* NSDMI - Non-static data member initialisation inside struct <br> 
+  Any non-static member of the class or a struct is initialized directly in its declaration, and not via a constructor. <br>
+## Class hierarchy
 
 
 OOP concepts
@@ -59,7 +46,10 @@ Direct initialization (C++11 feature) variables inside structure
 
 
 
-
+## design patterns
+inline keyword <br>
+If a function is inline, the compiler places a copy of the code of that function at each point where the function is called at compile time.
+Any change to an inline function could require all clients of the function to be recompiled because compiler would need to replace all the code once again otherwise it will continue with old functionality. <br>
 
 ADTs
 APFloat
