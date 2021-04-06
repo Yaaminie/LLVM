@@ -34,8 +34,26 @@ The lld subproject is an attempt to develop a built-in, platform-independent lin
 * use of override ensures virtual function declared in a derived class has the same function signature as that of the base class.<br>
 * NSDMI - Non-static data member initialisation inside struct <br> 
   Any non-static member of the class or a struct is initialized directly in its declaration, and not via a constructor. <br>
+  
 ## Class hierarchy
+* One of the core header files in LLVM is Type.h header file inside IR directory and subclasses are     in DerivedTyes.h <br>
+  6 subclasses inherits from same base class Type so it is Hierarchical Inheritance <br>
+  Superclass: Type <br>
+  Subclasses: All the subclasses inherit only from class Type so Single Inheritance <br>
+    - IntegerType 
+    - FunctionType 
+    - StructType
+    - ArrayType
+    - VectorType
+        - FixedVectorType derived from VectorType (so VectorType is Superclass/Base class and                   FixedVectorType is Derived/subclass of VectorType). Multilevel Inheritance.
+        - ScalableVectorType is also a subclass of VectorType. Multilevel Inheritance.
+    - PointerType
+ * Superclass: StringRef <br>
+   Subclass: StringLiteral <br>
+   Single Inheritence
+     
 
+## OOP design decisions for LLVM
 
 OOP concepts
 Multiple inheritance in ilist.h
@@ -46,16 +64,36 @@ Direct initialization (C++11 feature) variables inside structure
 
 
 
-## design patterns
-inline keyword <br>
-If a function is inline, the compiler places a copy of the code of that function at each point where the function is called at compile time.
-Any change to an inline function could require all clients of the function to be recompiled because compiler would need to replace all the code once again otherwise it will continue with old functionality. <br>
+## Design Patterns
+* Language independence<br>
+* Lot of optimization: Multiple-stages of analysis & transformations (optimization is possible with the help of IR)
+* Modularity (Code divided into many source code files, header files and different folders)
+* inline keyword <br>
+  If a function is inline, the compiler places a copy of the code of that function at each point where the function is called at compile time.
+  Any change to an inline function could require all clients of the function to be recompiled because compiler would need to replace all the code once again otherwise it will     continue with old functionality. <br>
+* Use of templates
+* Polymorphism
+* Use of containers like map,vector,etc.
+* Use of enums
+* Use of classes that only define interface of member functions and definition is provided in another class
 
+
+## Usage of iterators and their own data structures
 ADTs
 APFloat
 ArrayRef
 SmallPtrSet
 StringRef
 
+Iterators
+Use of iterator
+const_iterator and const_reverse_iterator. (SmallVector.h) <br> 
+rbegin(),rend(), begin(), end() and size()   (SmallVector.h) <br>
+input_iterator_tag and iterator_traits <br>
+move_iterator <br>
+Use of operator== and operator!= (Value.h)
+Use of reverse_iterator (Type.h)
+Iterators to iterate through the array(ADT- ArrayRef) containing pointers of a particular class.
+forward_iterator_tag (Value.h)
 
 
